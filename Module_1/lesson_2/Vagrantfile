@@ -48,7 +48,8 @@ Vagrant.configure("2") do |config|
 
           box.vm.provider :virtualbox do |vb|
             	  vb.customize ["modifyvm", :id, "--memory", "1024"]
-		  vb.customize ["storagectl", :id, "--name", "SATA", "--add", "sata" ]
+		  vb.customize ["storagectl", :id, "--name", "SATA", "--add", 
+"sata" ]
 
 		  boxconfig[:disks].each do |dname, dconf|
 			  unless File.exist?(dconf[:dfile])
@@ -67,11 +68,11 @@ Vagrant.configure("2") do |config|
 	      sudo mdadm --create /dev/md3 --metadata=1.2 -l 0 -n 2 /dev/md{1,2}
               mdadm --detail --scan > /etc/mdadm.conf
 	      sudo parted -s /dev/md3 mklabel gpt
-              sudo parted -s /dev/md3 mkpart primary ext4 0 100M
+              sudo parted -s /dev/md3 mkpart primary ext4 2048s 100M
               sudo parted -s /dev/md3 mkpart primary ext4 101M 200M
               sudo parted -s /dev/md3 mkpart primary ext4 201M 300M
               sudo parted -s /dev/md3 mkpart primary ext4 301M 400M
-              sudo parted -s /dev/md3 mkpart primary ext4 401M 500M
+              sudo parted -s /dev/md3 mkpart primary ext4 401M 100%
   	  SHELL
 
       end
