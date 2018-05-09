@@ -8,33 +8,23 @@ MACHINES = {
 	:disks => {
 		:sata1 => {
 			:dfile => './sata1.vdi',
-			:size => 5000,
+			:size => 250,
 			:port => 1
 		},
 		:sata2 => {
                         :dfile => './sata2.vdi',
-                        :size => 5000, # Megabytes
+                        :size => 250, # Megabytes
 			:port => 2
 		},
                 :sata3 => {
                         :dfile => './sata3.vdi',
-                        :size => 5000,
+                        :size => 250,
                         :port => 3
                 },
                 :sata4 => {
                         :dfile => './sata4.vdi',
-                        :size => 5000, # Megabytes
+                        :size => 500, # Megabytes
                         :port => 4
-                },
-		:sata5 => {
-                        :dfile => './sata5.vdi',
-                        :size => 500, # Megabytes
-                        :port => 5
-                },
-		:sata6 => {
-                        :dfile => './sata6.vdi',
-                        :size => 500, # Megabytes
-                        :port => 6
                 }
 
 	}
@@ -72,13 +62,13 @@ Vagrant.configure("2") do |config|
  	  box.vm.provision "shell", inline: <<-SHELL
 	      mkdir -p ~root/.ssh
               cp ~vagrant/.ssh/auth* ~root/.ssh
-	      yum install -y xfsdump nano mc
-	      sudo pvcreate /dev/sd{b,c,d,e}
-              vgcreate centos /dev/sd{b,c,d,e}
-              lvcreate -L8G -n root centos
-	      lvcreate -L1G -n swap centos
-	      mkfs.xfs /dev/mapper/centos-root
-              mount /dev/mapper/centos-root /mnt
+	      yum install -y mdadm smartmontools hdparm gdisk nano xfsdump screen
+	      sudo mdadm --create /dev/md1 --metadata=0.9 -l 0 -n 4 /dev/sd{b,c,d,e}
+              sudo mdadm --examine --scan --config=mdadm.conf >> /etc/mdadm.conf
+	      sudo parted -s /dev/md1 mklabel gpt
+              sudo parted -s /dev/md1 mkpart primary ext4 4096s 100%
+	      mkfs.ext4 /dev/md1p1
+              mount /dev/md1p1 /mnt
   	  SHELL
 
       end
