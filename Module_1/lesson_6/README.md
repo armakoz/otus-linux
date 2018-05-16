@@ -41,4 +41,13 @@ OnUnitInactiveSec=30s
 Also=check_word_in_log.service
 ```
 
-Таймер включается командой **enable --now check_word_in_log.timer**
+Таймер включается командой **systemctl enable --now check_word_in_log.timer**
+
+
+Результатом работы является сообщения в journalctl о найденои или не найденом слове в конкретном логе (параметры задаются в специальном файле)
+
+!(https://github.com/armakoz/otus-linux/blob/master/Module_1/lesson_6/result_1.png?raw=true)
+
+
+
+>2. Из epel установить spawn-fcgi и переписать init-скрипт на unit-файл. Имя >сервиса должно так же называться.
