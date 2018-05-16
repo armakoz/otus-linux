@@ -46,7 +46,7 @@ Also=check_word_in_log.service
 
 Результатом работы является сообщения в journalctl о найденои или не найденом слове в конкретном логе (параметры задаются в специальном файле)
 
-!(https://github.com/armakoz/otus-linux/blob/master/Module_1/lesson_6/result_1.png?raw=true)
+![result_1](https://github.com/armakoz/otus-linux/blob/master/Module_1/lesson_6/result_1.png?raw=true)
 
 
 
