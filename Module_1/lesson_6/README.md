@@ -88,6 +88,19 @@ WantedBy=multi-user.target
 
 >3. Дополнить юнит-файл apache httpd возможностьб запустить несколько >инстансов сервера с разными конфигами
 
+Скопируем юнит апача: `cp /lib/systemd/system/httpd.service /lib/systemd/system/httpd@.service`
+
+Создадим конфиг для инстанса и запишем в него опции: `nano /etc/sysconfig/httpd-new`
+
+```
+OPTIONS="-f /etc/httpd/conf/httpd_second.conf"
+```
+Так же нужно создать отдельный конфиг апача.
+В httpd@.service меняем `EnvironmentFile=/etc/sysconfig/httpd-%i`
+
+Запуск
+
+```systemctl start httpd@new```
 
 
 >4*. Скачать демо-версию Atlassian Jira и переписать основной скрипт запуска >на unit-файл
