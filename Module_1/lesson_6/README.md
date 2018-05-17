@@ -55,6 +55,7 @@ Also=check_word_in_log.service
 Скрипт запуска расположен в /etc/init.d/spawn-fcgi. На основании его были созданы:
 
 * 1) Файл конфигурации в /etc/sysconfig/spawn-fcgi
+* 
 ```
 # You must set some working options before the "spawn-fcgi" service will work.
 # If SOCKET points to a file, then this file is cleaned up by the init script.
@@ -66,6 +67,7 @@ Also=check_word_in_log.service
 OPTIONS="-a 127.0.0.1 -p 9001 -P /var/run/spawn-fcgi.pid -f /var/log/test"
 ```
 * 2) Файл юнита в /lib/systemd/system/spawn-fcgi.service
+* 
 ```
 
 [Unit]
@@ -81,5 +83,28 @@ KillSignal=SIGCONT
 PrivateTmp=true
 
 [Install]
+WantedBy=multi-user.target
+```
+
+>3. Дополнить юнит-файл apache httpd возможностьб запустить несколько >инстансов сервера с разными конфигами
+
+
+
+>4*. Скачать демо-версию Atlassian Jira и переписать основной скрипт запуска >на unit-файл
+
+Создан файл /lib/systemd/system/jira.service
+
+```
+[Unit] 
+Description=Jira
+After=network.target
+
+[Service] 
+Type=simple
+PIDFile=/opt/atlassian/jira/work/catalina.pid
+ExecStart=/opt/atlassian/jira/bin/start-jira.sh
+ExecStop=/opt/atlassian/jira/bin/stop-jira.sh
+
+[Install] 
 WantedBy=multi-user.target
 ```
