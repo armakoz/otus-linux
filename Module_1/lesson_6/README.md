@@ -108,3 +108,5 @@ ExecStop=/opt/atlassian/jira/bin/stop-jira.sh
 [Install] 
 WantedBy=multi-user.target
 ```
+
+![jira](https://github.com/armakoz/otus-linux/blob/master/images/jira.png?raw=true)
