@@ -46,8 +46,40 @@ Also=check_word_in_log.service
 
 Результатом работы является сообщения в journalctl о найденои или не найденом слове в конкретном логе (параметры задаются в специальном файле)
 
-![result_1](https://github.com/armakoz/otus-linux/blob/master/Module_1/lesson_6/result_1.png?raw=true)
+![result_1](https://github.com/armakoz/otus-linux/blob/master/images/result_1.png)
 
 
 
 >2. Из epel установить spawn-fcgi и переписать init-скрипт на unit-файл. Имя >сервиса должно так же называться.
+
+Скрипт запуска расположен в /etc/init.d/spawn-fcgi. На основании его были созданы:
+
+* 1) Файл конфигурации в /etc/sysconfig/spawn-fcgi
+```
+# You must set some working options before the "spawn-fcgi" service will work.
+# If SOCKET points to a file, then this file is cleaned up by the init script.
+#
+# See spawn-fcgi(1) for all possible options.
+#
+# Example :
+#SOCKET=/var/run/php-fcgi.sock
+OPTIONS="-a 127.0.0.1 -p 9001 -P /var/run/spawn-fcgi.pid -f /var/log/test"
+```
+* 2) Файл юнита в /lib/systemd/system/spawn-fcgi.service
+```
+
+[Unit]
+Description=spawn-dcgi service
+
+[Service]
+Type=simple
+PIDFile=/run/spawn-fcgi.pid
+EnvironmentFile=/etc/sysconfig/spawn-fcgi
+ExecStart=/usr/bin/spawn-fcgi $OPTIONS
+ExecStop=/bin/kill $MAINPID
+KillSignal=SIGCONT
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+```
