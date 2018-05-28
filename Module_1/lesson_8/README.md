@@ -39,4 +39,4 @@ sudo yum repolist
 sudo yum install mc
 ```
 
-[myrepo](https://github.com/armakoz/otus-linux/blob/master/images/myrepo.png)
+![myrepo](https://github.com/armakoz/otus-linux/blob/master/images/myrepo.png)
