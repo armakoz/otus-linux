@@ -13,3 +13,11 @@
 Настроен доступ по ключу
 
 ![ssh](https://github.com/armakoz/otus-linux/blob/master/images/ssh_access.png)
+
+>между centralRouter и inetRouter
+>"пробросить" 2 линка (2 internal сети) и объединить их в бонд актив-актив
+>проверить работу если выборать интерфейсы в бонде по очереди
+
+Приложен скрипт bond_settings.sh, настраивающий bonding.
+
+![sbondingsh](https://github.com/armakoz/otus-linux/blob/master/images/bonding.png)

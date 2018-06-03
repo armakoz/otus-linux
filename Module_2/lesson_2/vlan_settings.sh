@@ -83,4 +83,3 @@ EOT
 EOT
     systemctl restart network
 fi
-
