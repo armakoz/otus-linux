@@ -43,62 +43,62 @@ MACHINES = {
                    {ip: '192.168.2.193', adapter: 6, netmask: "255.255.255.192", virtualbox__intnet: "office1-hw"},
                 ]
   },
- #  :office1Server => {
- #       :box_name => "centos/7",
- #       :net => [
- #                  {ip: '192.168.2.194', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office1-hw"},
- #                  {adapter: 3, auto_config: false, virtualbox__intnet: true},
- #                  {adapter: 4, auto_config: false, virtualbox__intnet: true},
- #               ]
- # },
- # :office2Router => {
- #       :box_name => "centos/7",
- #       :net => [
- #                  {ip: '192.168.250.2', adapter: 2, netmask: "255.255.255.252", virtualbox__intnet: "office2router-net"},
- #                  {ip: '192.168.1.1', adapter: 3, netmask: "255.255.255.128", virtualbox__intnet: "office2-dev"},
- #                  {ip: '192.168.1.129', adapter: 4, netmask: "255.255.255.192", virtualbox__intnet: "office2-test"},
- #                  {ip: '192.168.1.193', adapter: 5, netmask: "255.255.255.192", virtualbox__intnet: "office2-hw"},
- #               ]
- # },
- #    :office2Server => {
- #       :box_name => "centos/7",
- #      :net => [
- #                  {ip: '192.168.1.194', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office2-hw"},
- #                  {adapter: 3, auto_config: false, virtualbox__intnet: true},
- #                  {adapter: 4, auto_config: false, virtualbox__intnet: true},
- #               ]
- # },
-  :testClient1 => {
-    :box_name => "centos/7",
-    :net => [
-               {ip: '192.168.2.66', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office1-test-server"},
-               {ip: '10.10.10.254', adapter: 3, netmask: "255.255.255.0", virtualbox__intnet: "testLan"},
+  :office1Server => {
+       :box_name => "centos/7",
+       :net => [
+                  {ip: '192.168.2.194', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office1-hw"},
+                  {adapter: 3, auto_config: false, virtualbox__intnet: true},
+                  {adapter: 4, auto_config: false, virtualbox__intnet: true},
+               ]
+ },
+ :office2Router => {
+       :box_name => "centos/7",
+       :net => [
+                  {ip: '192.168.250.2', adapter: 2, netmask: "255.255.255.252", virtualbox__intnet: "office2router-net"},
+                  {ip: '192.168.1.1', adapter: 3, netmask: "255.255.255.128", virtualbox__intnet: "office2-dev"},
+                  {ip: '192.168.1.129', adapter: 4, netmask: "255.255.255.192", virtualbox__intnet: "office2-test"},
+                  {ip: '192.168.1.193', adapter: 5, netmask: "255.255.255.192", virtualbox__intnet: "office2-hw"},
+               ]
+ },
+    :office2Server => {
+       :box_name => "centos/7",
+      :net => [
+                  {ip: '192.168.1.194', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office2-hw"},
+                  {adapter: 3, auto_config: false, virtualbox__intnet: true},
+                  {adapter: 4, auto_config: false, virtualbox__intnet: true},
+               ]
+ },
+#   :testClient1 => {
+#     :box_name => "centos/7",
+#     :net => [
+#                {ip: '192.168.2.66', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office1-test-server"},
+#                {ip: '10.10.10.254', adapter: 3, netmask: "255.255.255.0", virtualbox__intnet: "testLan"},
                
-            ]
-},
-  :testClient2 => {
-  :box_name => "centos/7",
-  :net => [
-             {ip: '192.168.2.67', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office1-test-server"},
-             {ip: '10.10.10.254', adapter: 3, netmask: "255.255.255.0", virtualbox__intnet: "testLan"},
+#             ]
+# },
+#   :testClient2 => {
+#   :box_name => "centos/7",
+#   :net => [
+#              {ip: '192.168.2.67', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office1-test-server"},
+#              {ip: '10.10.10.254', adapter: 3, netmask: "255.255.255.0", virtualbox__intnet: "testLan"},
 
-          ]
-},
-  :testServer1 => {
-  :box_name => "centos/7",
-  :net => [
-             {ip: '192.168.2.68', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office1-test-server"},
-             {ip: '10.10.10.1', adapter: 3, netmask: "255.255.255.0", virtualbox__intnet: "testLan"},
+#           ]
+# },
+#   :testServer1 => {
+#   :box_name => "centos/7",
+#   :net => [
+#              {ip: '192.168.2.68', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office1-test-server"},
+#              {ip: '10.10.10.1', adapter: 3, netmask: "255.255.255.0", virtualbox__intnet: "testLan"},
              
-          ]
-},
-  :testServer2 => {
-  :box_name => "centos/7",
-  :net => [
-             {ip: '192.168.2.69', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office1-test-server"},
-             {ip: '10.10.10.1', adapter: 3, netmask: "255.255.255.0", virtualbox__intnet: "testLan"},
-          ]
-},
+#           ]
+# },
+#   :testServer2 => {
+#   :box_name => "centos/7",
+#   :net => [
+#              {ip: '192.168.2.69', adapter: 2, netmask: "255.255.255.192", virtualbox__intnet: "office1-test-server"},
+#              {ip: '10.10.10.1', adapter: 3, netmask: "255.255.255.0", virtualbox__intnet: "testLan"},
+#           ]
+# },
   
 }
 
@@ -178,39 +178,39 @@ Vagrant.configure("2") do |config|
             systemctl restart network
             sysctl net.ipv4.ip_forward=1
             SHELL
-        when "testClient1"
-            box.vm.provision "shell", run: "always", inline: <<-SHELL
-              echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
-              echo "GATEWAY=192.168.2.65" >> /etc/sysconfig/network-scripts/ifcfg-eth1
-              systemctl restart network
-              SHELL
-            box.vm.provision "shell", path: "../lesson_1/vlan_settings.sh", :args => "testClient1"
-        when "testClient2"
-            box.vm.provision "shell", run: "always", inline: <<-SHELL
-              echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
-              echo "GATEWAY=192.168.2.65" >> /etc/sysconfig/network-scripts/ifcfg-eth1
-              systemctl restart network
-              SHELL
-            box.vm.provision "shell", path: "../lesson_1/vlan_settings.sh", :args => "testClient2"
-        when "testServer1"
-              box.vm.provision "shell", run: "always", inline: <<-SHELL
-              echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
-              echo "GATEWAY=192.168.2.65" >> /etc/sysconfig/network-scripts/ifcfg-eth1
-              systemctl restart network
-              # sed -c -i "s/#PubkeyAuthentication yes/PubkeyAuthentication yes/" /etc/ssh/sshd_config
-              # systemctl restart sshd
-              SHELL
-              box.vm.provision "shell", path: "../lesson_1/vlan_settings.sh", :args => "testServer1"
-        when "testServer2"
-              box.vm.provision "shell", run: "always", inline: <<-SHELL
-              echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
-              echo "GATEWAY=192.168.2.65" >> /etc/sysconfig/network-scripts/ifcfg-eth1
-              systemctl restart network
-              # sed -c -i "s/#PubkeyAuthentication yes/PubkeyAuthentication yes/" /etc/ssh/sshd_config
-              # systemctl restart sshd
-              SHELL
-              box.vm.provision "shell", path: "../lesson_1/vlan_settings.sh", :args => "testServer2"
-        end
+        # when "testClient1"
+        #     box.vm.provision "shell", run: "always", inline: <<-SHELL
+        #       echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
+        #       echo "GATEWAY=192.168.2.65" >> /etc/sysconfig/network-scripts/ifcfg-eth1
+        #       systemctl restart network
+        #       SHELL
+        #     box.vm.provision "shell", path: "../lesson_1/vlan_settings.sh", :args => "testClient1"
+        # when "testClient2"
+        #     box.vm.provision "shell", run: "always", inline: <<-SHELL
+        #       echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
+        #       echo "GATEWAY=192.168.2.65" >> /etc/sysconfig/network-scripts/ifcfg-eth1
+        #       systemctl restart network
+        #       SHELL
+        #     box.vm.provision "shell", path: "../lesson_1/vlan_settings.sh", :args => "testClient2"
+        # when "testServer1"
+        #       box.vm.provision "shell", run: "always", inline: <<-SHELL
+        #       echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
+        #       echo "GATEWAY=192.168.2.65" >> /etc/sysconfig/network-scripts/ifcfg-eth1
+        #       systemctl restart network
+        #       # sed -c -i "s/#PubkeyAuthentication yes/PubkeyAuthentication yes/" /etc/ssh/sshd_config
+        #       # systemctl restart sshd
+        #       SHELL
+        #       box.vm.provision "shell", path: "../lesson_1/vlan_settings.sh", :args => "testServer1"
+        # when "testServer2"
+        #       box.vm.provision "shell", run: "always", inline: <<-SHELL
+        #       echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
+        #       echo "GATEWAY=192.168.2.65" >> /etc/sysconfig/network-scripts/ifcfg-eth1
+        #       systemctl restart network
+        #       # sed -c -i "s/#PubkeyAuthentication yes/PubkeyAuthentication yes/" /etc/ssh/sshd_config
+        #       # systemctl restart sshd
+        #       SHELL
+        #       box.vm.provision "shell", path: "../lesson_1/vlan_settings.sh", :args => "testServer2"
+        # end
 
       end
 
