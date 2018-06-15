@@ -1,0 +1,71 @@
+
+    2  wget https://github.com/OpenVPN/easy-rsa/archive/master.zip
+    3  yum install -y wget
+    4  wget https://github.com/OpenVPN/easy-rsa/archive/master.zip
+    5  unzip master.zip
+    6  yum install -y unzip
+    7  unzip master.zip
+    8  cp easy-rsa-master/ /etc/openvpn/easy-rsa
+    9  cp -r easy-rsa-master/ /etc/openvpn/easy-rsa
+   10  cd /etc/openvpn/easy-rsa/
+   11  ll
+   13  mc
+   14  yum install -y mc
+   15  mc
+   18  mkdir /etc/openvpn/keys && chmod 700 /etc/openvpn/keys
+   19  mkdir /etc/openvpn/ccd.port.1194 && chmod 700 /etc/openvpn/ccd.port.1194
+   20  mkdir /var/log/openvpn/
+   21  vi /etc/sysctl.conf 
+   22  vi /etc/sysctl.d/
+   23  cd /etc/sysctl.d/
+   24  mc
+   25  sysctl -p
+   27  cd /etc/openvpn/easy-rsa/easyrsa3/
+   31  ./easyrsa 
+   32  mkdir {archive,ccd-tmp,keys,templates,tmp}
+   33  ./build-ca openvpn.server nopass
+   34  ./easyrsa build-ca openvpn.server nopass
+   35  ./easyrsa help build-ca
+   36  mc
+   37  ./easyrsa build-ca
+   38  ./easyrsa init-pki
+   39  ./easyrsa build-ca openvpn.server nopass
+   40  ./easyrsa gen-dh
+   41  mc
+   42  ./easyrsa gen-req server nopass
+   43  ./easyrsa sign-req server server
+   44  cp pki/ca.crt /etc/openvpn/ca.crt
+   45  cp pki/dh.pem /etc/openvpn/dh.pem
+   46  cp pki/issued/server.crt /etc/openvpn/server.crt
+   47  cp pki/private/server.key /etc/openvpn/server.key
+   48  ./easyrsa gen-req amakartcev nopass
+   49  ./easyrsa sign-req amakartcev amakartcev
+   50  ./easyrsa build-client-full amakartcev
+   51  rm /etc/openvpn/easy-rsa/easyrsa3/pki/reqs/amakartcev.req
+   52  ./easyrsa build-client-full amakartcev
+   53  rm -f /etc/openvpn/easy-rsa/easyrsa3/pki/private/amakartcev.key
+   54  ./easyrsa build-client-full amakartcev
+   55  ./easyrsa build-client-full amakartcev nopass
+   56  mc
+   57  systemctl start openvpn@server
+   58  journalctl -xe
+   59  mc
+   60  cd ../../
+   61  mv openvpn.port.1194.conf server.conf
+   62  systemctl start openvpn@server
+   63  journalctl -xe
+   64  tail /var/log/openvpn/openvpn0.log 
+   65  mc
+   66  systemctl start openvpn@server
+   67  journalctl -xe
+   68  tail /var/log/openvpn/openvpn0.log 
+   69  mc
+   70  systemctl start openvpn@server
+   71  netstat -tlnp
+   72  yum install -y net-utils
+   73  yum install -y net-util
+   74  yum install -y network-tools
+   75  yum install -y net-tools
+   76  netstat -tlnp
+   77  ip a
+

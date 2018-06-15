@@ -57,3 +57,10 @@ listening on br0, link-type EN10MB (Ethernet), capture size 262144 bytes
 14:19:55.311056 IP 192.168.2.194 > office1Router: ICMP echo request, id 3105, seq 4, length 64
 14:19:55.311113 IP office1Router > 192.168.2.194: ICMP echo reply, id 3105, seq 4, length 64
 ```
+>2. Поднять RAS на базе OpenVPN с клиентскими сертификатами, подключиться с локальной машины на виртуалку
+
+Развернул отдельную виртуалку не из стенда. В качестве отчета прилагаю history лог, конфигурацию сервера и скрины успешного захода с локальный машины по впн.
+
+![vpn_connect](https://github.com/armakoz/otus-linux/blob/master/images/vpn_connect.png)
+
+![vpn_status](https://github.com/armakoz/otus-linux/blob/master/images/vpn_status.png)
