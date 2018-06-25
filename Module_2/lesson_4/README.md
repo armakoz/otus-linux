@@ -12,14 +12,14 @@
 
 В качестве отчета скрины tracepath.
 
-![r1-r3_assync1](https://github.com/armakoz/otus-linux/blob/master/images/r1-r3_assync1.png)
+![r1-r3_assync1](https://github.com/armakoz/otus-linux/blob/master/images/r1-r3_assync.png)
 
-![r1-r3_assync2](https://github.com/armakoz/otus-linux/blob/master/images/r1-r3_assync2.png)
+![r1-r3_assync2](https://github.com/armakoz/otus-linux/blob/master/images/r1-r3_assync1.png)
 
 > 3. Сделать один из линков "дорогим", но что бы при этом роутинг был симметричным
 
 Чтобы сделать симметричный роутинг увеличил цену интерфейса 192.168.20.2 на 3 роутере
 
-![r1-r3_sync1](https://github.com/armakoz/otus-linux/blob/master/images/r1-r3_sync1.png)
+![r1-r3_sync1](https://github.com/armakoz/otus-linux/blob/master/images/r1-r3_sync.png)
 
 ![r1-r3_sync2](https://github.com/armakoz/otus-linux/blob/master/images/r1-r3_sync2.png)
