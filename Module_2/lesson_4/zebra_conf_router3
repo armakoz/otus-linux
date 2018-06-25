@@ -1,0 +1,23 @@
+[root@router3 ~]# cat /etc/quagga/zebra.conf
+!
+! Zebra configuration saved from vty
+!   2018/06/25 13:16:20
+!
+hostname router3
+!
+interface eth0
+ ipv6 nd suppress-ra
+!
+interface eth1
+ ipv6 nd suppress-ra
+!
+interface eth2
+ ipv6 nd suppress-ra
+!
+interface lo
+!
+ip forwarding
+!
+!
+line vty
+!
