@@ -21,4 +21,4 @@
 
 Проверка в браузере ext_ip:8080
 
-![knock](https://github.com/armakoz/otus-linux/blob/master/images/nginx-nat.png)
+![nginx-nat](https://github.com/armakoz/otus-linux/blob/master/images/nginx-nat.png)
