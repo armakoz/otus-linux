@@ -13,7 +13,7 @@
 >4) пробросить 80й порт на inetRouter2 8080
 >5) дефолт в инет оставить через inetRouter
 
-Перед разворачивание вписать свой интерфейс
+Перед разворачивание вписать свой интерфейс в блок inetRouter2.
 
 :public => { :adapter => 2, :bridge => "enp1s0" }
 
@@ -21,4 +21,4 @@
 
 Проверка в браузере ext_ip:8080
 
-![nginx-nat](https://github.com/armakoz/otus-linux/blob/master/images/nginx-nat.png)
+![nginx-nat](https://github.com/armakoz/otus-linux/blob/master/images/nginx_nat.png)
