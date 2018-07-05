@@ -1,0 +1,20 @@
+#!/bin/bash
+
+user=$PAM_USER
+
+
+nday=`date +"%u"`
+ndaymonth=`date +"%d%m"`
+
+if [[ $nday == "6" || $nday == "7" || $ndaymonth == "2302" || $ndaymonth == "0803" ]]
+then
+  echo "ERROR!"
+  exit 1
+else
+  exit 0
+fi
+
+if [[ `grep $user /etc/group | grep 'admin'` ]]
+then
+  exit 0
+fi
