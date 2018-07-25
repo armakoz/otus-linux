@@ -10,6 +10,7 @@
 Результат:
 
 ![date](https://github.com/armakoz/otus-linux/blob/master/images/date.png)
+
 ![user_auth](https://github.com/armakoz/otus-linux/blob/master/images/user_auth.png)
 
 >2. Дать конкретному пользователю права рута

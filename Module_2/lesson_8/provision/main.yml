@@ -1,0 +1,69 @@
+- hosts: centralServer
+  become: True
+  tasks:
+    - name: Install EPEL release repo
+      yum: name=epel-release state=latest
+    - name: Install nginx
+      yum: name=nginx state=latest
+    - name: Install iptables-services
+      yum: name=iptables-services state=present
+    - name: Disable SELinux
+      selinux: state=disabled
+    - name: enable nginx
+      systemd: name=nginx enabled=yes
+    - name: Make sure a service is running
+      systemd: state=started name=nginx
+
+- hosts: centralRouter
+  become: True
+  tasks:
+    - name: Install the libselinux-python package
+      yum: name=libselinux-python state=present
+    - name: Disable SELinux
+      selinux: state=disabled
+    - name: Allow forwarding
+      sysctl: name=net.ipv4.ip_forward value=1 state=present reload=yes state=present sysctl_set=yes
+    - name: Install nmap
+      yum: name=nmap state=latest
+    - name: copy knock.sh to centralRouter
+      template: src=templates/knock.sh.j2 dest=/tmp/knock.sh mode=0755
+- hosts: inetRouter
+  become: True
+  tasks:
+      - name: Install the libselinux-python package
+        yum: name=libselinux-python state=present
+      - name: Install iptables-services
+        yum: name=iptables-services state=present
+      - name: Disable SELinux
+        selinux: state=disabled
+      - name: Allow forwarding
+        sysctl: name=net.ipv4.ip_forward value=1 state=present reload=yes state=present sysctl_set=yes
+      - name: copy knock iptables rules to inetRouter
+        template: src=templates/iptables.j2 dest=/tmp/iptables
+      - name: Restore iptables rules
+        shell: iptables-restore < /tmp/iptables
+      - name: Save iptables rules
+        shell: service iptables save
+      - name: Add static route to centralRouter
+        shell: ip route add 192.168.0.0/16 via 192.168.255.2
+      - name: Enable ssh password authentication
+        replace: path=/etc/ssh/sshd_config regexp='PasswordAuthentication no' replace='PasswordAuthentication yes'
+      - name: Restart sshd
+        service: name=sshd state=restarted
+- hosts: inetRouter2
+  become: True
+  tasks:
+      - name: Install the libselinux-python package
+        yum: name=libselinux-python state=present
+      - name: Install iptables-services
+        yum: name=iptables-services state=present
+      - name: Disable SELinux
+        selinux: state=disabled
+      - name: Allow forwarding
+        sysctl: name=net.ipv4.ip_forward value=1 state=present reload=yes state=present sysctl_set=yes
+      - name: Add static route to centralRouter
+        shell: ip route add 192.168.0.0/16 via 192.168.255.2
+      - name: copy iptables-nat rules to inetRouter2
+        template: src=templates/iptables-nat.j2 dest=/tmp/iptables-nat
+
+      
