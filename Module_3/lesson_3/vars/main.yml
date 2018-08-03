@@ -1,0 +1,32 @@
+ipaserver_packages: 
+  - ipa-server
+  - libselinux-python
+  - ipa-server-dns
+ipaserver_base_command: "ipa-server-install -U" 
+ipaserver_realm: DZ.LOCAL
+ipaserver_domain: dz.local
+ipaserver_admin_password: 12345678
+ipaserver_dir_admin_password: 12345678
+ipaserver_hostname: centralserver.dz.local
+ipaserver_ip: 192.168.0.2
+ipaserver_setup_dns: True
+ipaserver_mkhomedir: True
+ipaserver_admin_username: admin
+
+
+
+ipaclient_packages:
+  - ipa-client
+  - ipa-admintools
+  - sssd-ipa
+  - sssd-ldap
+  - ipa-python
+  - libipa_hbac
+  - python-libipa_hbac
+  - python-iniparse
+  - ca-certificates
+ipaclient_base_command: "ipa-client-install -U"
+ipaclient_configure_ssh: True
+ipaclient_configure_sshd: True
+ipaclient_mkhomedir: True
+ipaclient_ssh_trust_dns: False
