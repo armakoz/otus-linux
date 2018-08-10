@@ -1,0 +1,23 @@
+- hosts: all
+  become: True
+  tasks:
+    - name: Upgrade all packages
+      yum: name=* state=latest
+    - name: Set timezone
+      timezone: name=Europe/Moscow
+
+    - name: Install must have packages
+      yum: name {{ item }} state=present
+      with_items: "{{ packages }}" 
+
+    - name: Recomended sysctl
+      sysctl:
+        name: "{{ sysctl.name }}"
+        value: "{{ sysctl.value }}"
+        reload: yes
+      with_items: "{{ sysctl }}"
+    
+    - name: Disable SELINUX
+      action: lineinfile dest=/etc/selinux/config regexp=^SELINUX= line=SELINUX=disabled
+      notify: Disable selinux
+
