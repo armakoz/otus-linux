@@ -1,0 +1,6 @@
+# Send crit logs to remote server
+*.crit  /var/log/critical
+*.crit  @192.168.0.1:514
+
+#Send audit log to remote server
+local6.* @192.168.0.1:514

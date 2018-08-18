@@ -1,0 +1,69 @@
+# -*- mode: ruby -*-
+# vim: set ft=ruby :
+# -*- mode: ruby -*-
+# vim: set ft=ruby :
+
+MACHINES = {
+  :log => {
+    :box_name => "centos/7",
+  #  :public => { :adapter => 3, :bridge => "en0" },
+    :net => [
+               {ip: '192.168.0.1', adapter: 2, netmask: "255.255.255.0", virtualbox__intnet: "dir-net"},
+
+            ]
+},
+  :web => {
+        :box_name => "centos/7",
+        #:public => {:ip => '10.10.10.1', :adapter => 1},
+        :net => [
+                   {ip: '192.168.0.2', adapter: 2, netmask: "255.255.255.0", virtualbox__intnet: "dir-net"},
+                ]
+  },
+  
+}
+
+Vagrant.configure("2") do |config|
+    
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 256
+    v.cpus = 1
+  end
+
+  config.vm.provision "ansible" do |ansible|
+     ansible.playbook = "rsyslog_role/main.yml"
+  #   ansible.verbose = "vvv"
+  #   ansible.groups = {
+  #     "clients" => ["inetRouter", "centralRouter", "office1Server", "office2Server", "office1Router","office2Router" ]
+  #   }
+   end
+
+
+
+  MACHINES.each do |boxname, boxconfig|
+
+    config.ssh.insert_key = false
+
+    config.vm.define boxname do |box|
+
+        box.vm.box = boxconfig[:box_name]
+        box.vm.host_name = boxname.to_s.downcase + '.otus.local'
+
+        boxconfig[:net].each do |ipconf|
+          box.vm.network "private_network", ipconf
+        end
+        
+        if boxconfig.key?(:public)
+          box.vm.network "public_network", boxconfig[:public]
+        end
+
+
+        box.vm.provision "shell", inline: <<-SHELL
+          mkdir -p ~root/.ssh
+                cp ~vagrant/.ssh/auth* ~root/.ssh
+        SHELL
+        
+        
+  end
+  
+end 
+end

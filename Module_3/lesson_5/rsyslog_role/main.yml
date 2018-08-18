@@ -1,0 +1,57 @@
+- hosts: web
+  become: true
+  tasks:
+    - name: Install nginx repo
+      template:
+        src: nginx_repo.j2
+        dest: /etc/yum.repos.d/nginx.repo
+    - name: Install nginx
+      yum: 
+        name: nginx
+        state: installed
+    - name: Set audit.rules for nginx
+      template:
+        src: nginx_audit.j2
+        dest: /etc/audit.rules
+    - name: Set custom rsyslog
+      template:
+        src: web_custom_rsyslog.j2
+        dest: /etc/rsyslog.d/custom_rsyslog.conf
+    - name: Set nginx conf for logs
+      template:
+          src: web_nginxconf.j2
+          dest: /etc/nginx/nginx.conf
+    - name: Start nginx
+      systemd:
+          state: started
+          enabled: yes
+          name: nginx
+    - name: Set audisp config
+      template:
+          src: audisp_syslog.j2
+          dest: /etc/audisp/plugins.d/syslog.conf
+    - name: Restart auditd
+      command: /sbin/service auditd restart
+    - name: Apply audit rules from file
+      command: auditctl -R /etc/audit.rules
+    - name: Restart rsyslog
+      systemd:
+          name: rsyslog
+          state: restarted
+
+- hosts: log
+  become: true
+  tasks:
+    - name: Set  rsyslog.conf 
+      template:
+        src: log_rsyslogconf.j2
+        dest: /etc/rsyslog.conf
+    - name: Set  rsyslog custom settings
+      template:
+        src: log_custom_rsyslog.j2
+        dest: /etc/rsyslog.d/custom_log.conf
+
+    - name: Restart rsyslog
+      systemd:
+          name: rsyslog
+          state: restarted
