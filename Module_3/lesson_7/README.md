@@ -1,0 +1,1 @@
+![dashboard](https://github.com/armakoz/otus-linux/blob/master/images/dashboard.png)
